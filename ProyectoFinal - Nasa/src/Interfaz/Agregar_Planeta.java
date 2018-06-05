@@ -24,7 +24,7 @@ public class Agregar_Planeta extends JInternalFrame {
 	JButton btn_Guardar, btn_Limpiar;
 	
 	public Agregar_Planeta() {
-		super("Agregar Planeta", true);
+		super("Agregar Planeta", true,true,true,true);
 		
 		panel = new JPanel();
 		panel.setLayout(null);
