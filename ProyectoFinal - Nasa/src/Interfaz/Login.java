@@ -21,25 +21,19 @@ import Aplicacion.Validaciones;
 
 public class Login extends JInternalFrame {
 	
-	JPanel jPrincipal, jPanelIzq, jPanelDer, jUser, jPass;
+	JPanel panel;
 	JLabel lUser, lPass;
 	JTextField tUser, tPass;
 	JButton btn_Login, btn_Invitado;
 	
 	public Login() {
-		super("Inicio de caca");
+		super("Inicio de Sesión");
 		
 		// Creacion de Paneles
 		//jPrincipal = new JPanel();
 		
-		jPanelIzq = new JPanel();
-		jPanelIzq.setLayout(null);
-		
-		/** Paneles Izquierdos **/
-		//jUser = new JPanel();
-		//jPass = new JPanel();
-		
-		jPanelDer = new JPanel();
+		panel = new JPanel();
+		panel.setLayout(null);
 		
 		// Panel izquierdo
 		lUser = new JLabel("Usuario:");
@@ -65,18 +59,16 @@ public class Login extends JInternalFrame {
 		btn_Invitado.setBounds(150, 80, 100, 30);
 		
 
-		jPanelIzq.add(lUser);
-		jPanelIzq.add(tUser);
-		jPanelIzq.add(lPass);
-		jPanelIzq.add(tPass);
-		jPanelIzq.add(btn_Login);
-		jPanelIzq.add(btn_Invitado);
+		panel.add(lUser);
+		panel.add(tUser);
+		panel.add(lPass);
+		panel.add(tPass);
+		panel.add(btn_Login);
+		panel.add(btn_Invitado);
 		
 		
 		// Agregar a  Panel principal
-		
-		
-		add(jPanelIzq, BorderLayout.CENTER);
+		add(panel, BorderLayout.CENTER);
 		setVisible(true);
 		this.dibuja_frame();
 	}

@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -61,6 +63,12 @@ public class Principal extends JFrame{
 		// Creacion de los Items
 		/** Pestaña Inicio **/
 		iCerrar = new JMenuItem("Cerrar Sesion");
+		iCerrar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Logout();
+			}
+		});
 		
 		mInicio.add(iCerrar);
 		
@@ -109,5 +117,10 @@ public class Principal extends JFrame{
 	public void abrir_Login() {
 		Login L = new Login();
 		DP.add(L);
+	}
+	
+	public void Logout() {
+		abrir_Login();
+		this.mInicio.setVisible(false);
 	}
 }

@@ -24,10 +24,24 @@ public class Validaciones {
 		Matcher mat = P.matcher(cad);
 		
 		boolean b = mat.matches();
+		
 		if (b) {
-			return true;
+			return res = true;
 		}
 		
-		return false;
+		return res;
+	}
+	
+	public boolean Rut(String cad) {
+		boolean res = false;
+		Pattern P = Pattern.compile("(^[1-9]{1}[0-9]?.[0-9]{3}.[0-9]{3}-([0-9]|K){1}$)");
+		Matcher mat = P.matcher(cad);
+		
+		boolean b = mat.matches();
+		
+		if(b) {
+			return res = true;
+		}
+		return res;
 	}
 }
