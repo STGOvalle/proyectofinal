@@ -11,10 +11,13 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
+
+import Aplicacion.Validaciones;
 
 public class Login extends JInternalFrame {
 	
@@ -54,9 +57,7 @@ public class Login extends JInternalFrame {
 		btn_Login.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Principal P = (Principal)getDesktopPane().getTopLevelAncestor();
-				P.mInicio.setVisible(true);
-				dispose(); /** Cerrar internal Frame **/
+				Login();
 			}
 		});
 		
@@ -92,5 +93,23 @@ public class Login extends JInternalFrame {
 		setSize(300,170);
 		//pack();
 		setLocation(frame_anchura / 6, frame_altura / 6);
+	}
+	
+	public void Login() {
+		Principal P = (Principal)getDesktopPane().getTopLevelAncestor();
+		
+		String user = tUser.getText();
+		String pass = tPass.getText();
+		
+		Validaciones Val = new Validaciones();
+		
+		if (Val.campoVacio(user) == false || Val.campoVacio(pass) == false) {
+			JOptionPane.showMessageDialog(null, "No puedes dejar Campos Vacios");
+		} else if (Val.soloString(user) == false) {
+			JOptionPane.showMessageDialog(null, "El campo usuario, solo debe contener letras.");
+		} else {
+			P.mInicio.setVisible(true);
+			dispose(); /** Cerrar internal Frame **/
+		}
 	}
 }
