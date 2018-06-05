@@ -21,8 +21,8 @@ public class Principal extends JFrame{
 	
 	private JDesktopPane DP;
 	private JMenuBar barra;
-	public JMenu mInicio;
-	public JMenuItem iCerrar;
+	public JMenu mInicio, mPlanetas;
+	public JMenuItem iCerrar, iAgregarP;
 	
 	public Principal() {
 		addWindowListener(new WindowAdapter() {
@@ -57,6 +57,7 @@ public class Principal extends JFrame{
 		
 		// Creacion de los Menu
 		mInicio = new JMenu("Inicio");
+		mPlanetas = new JMenu("Planetas");
 		
 		mInicio.setVisible(false); /** Menu inicia invisible, se habilitará solo cuando se inicie sesion **/
 		
@@ -72,8 +73,15 @@ public class Principal extends JFrame{
 		
 		mInicio.add(iCerrar);
 		
+		/** Pestaña Planetas **/
+		iAgregarP = new JMenuItem("Agregar Planeta");
+		
+		
+		mPlanetas.add(iAgregarP);
+		
 		//Agregar menu a la barra	
 		barra.add(mInicio);
+		barra.add(mPlanetas);
 		
 		this.abrir_Login();
 		
@@ -115,7 +123,8 @@ public class Principal extends JFrame{
 	}
 	
 	public void abrir_Login() {
-		Login L = new Login();
+		//Login L = new Login();
+		Agregar_Planeta L = new Agregar_Planeta();
 		DP.add(L);
 	}
 	
