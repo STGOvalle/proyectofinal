@@ -24,7 +24,7 @@ public class Login extends JInternalFrame {
 	JButton btn_Login, btn_Invitado;
 	
 	public Login() {
-		super("Inicio de caca");
+		super("Inicio de sesion");
 		
 		// Creacion de Paneles
 		//jPrincipal = new JPanel();
