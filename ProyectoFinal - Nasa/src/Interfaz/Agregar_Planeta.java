@@ -54,7 +54,7 @@ public class Agregar_Planeta extends JInternalFrame {
 		
 		/** Nombre del Planeta **/
 		lNombre = new JLabel("Nombre del Planeta: ");
-		lNombre.setPreferredSize(new Dimension(145, 20));
+		lNombre.setPreferredSize(new Dimension(175, 20));
 		
 		
 		tNombre = new JTextField(10);
@@ -63,8 +63,8 @@ public class Agregar_Planeta extends JInternalFrame {
 		pNombre.add(tNombre);
 		
 		/** Diametro del planeta **/
-		lDiametro = new JLabel("Diametro: ");
-		lDiametro.setPreferredSize(new Dimension(145, 20));
+		lDiametro = new JLabel("Diametro ecuatorial(Km): ");
+		lDiametro.setPreferredSize(new Dimension(175, 20));
 		
 		tDiametro = new JTextField(10);
 		
@@ -73,7 +73,7 @@ public class Agregar_Planeta extends JInternalFrame {
 		
 		/** Elemento Organico **/
 		lEOrganico = new JLabel("Elemento Orgánico: ");
-		lEOrganico.setPreferredSize(new Dimension(145, 20));
+		lEOrganico.setPreferredSize(new Dimension(175, 20));
 		
 		tEOrganico = new JTextField(10);
 		
@@ -81,8 +81,8 @@ public class Agregar_Planeta extends JInternalFrame {
 		pEOrganico.add(tEOrganico);
 		
 		/** Temperatura **/
-		lTemperatura = new JLabel("Temperatura: ");
-		lTemperatura.setPreferredSize(new Dimension(145, 20));
+		lTemperatura = new JLabel("Temperatura Superficie(°C): ");
+		lTemperatura.setPreferredSize(new Dimension(175, 20));
 		
 		tTemperatura = new JTextField(10);
 		
@@ -90,8 +90,8 @@ public class Agregar_Planeta extends JInternalFrame {
 		pTemperatura.add(tTemperatura);
 		
 		/** Gravedad **/
-		lGravedad = new JLabel("Gravedad: ");
-		lGravedad.setPreferredSize(new Dimension(145, 20));
+		lGravedad = new JLabel("Gravedad(m/s²): ");
+		lGravedad.setPreferredSize(new Dimension(175, 20));
 		
 		tGravedad = new JTextField(10);
 
@@ -99,8 +99,8 @@ public class Agregar_Planeta extends JInternalFrame {
 		pGravedad.add(tGravedad);
 		
 		/** Velocidad de Escape **/
-		lVel_Esc = new JLabel("Velocidad de Escape: ");
-		lVel_Esc.setPreferredSize(new Dimension(145, 20));
+		lVel_Esc = new JLabel("Velocidad de Escape(Km/s): ");
+		lVel_Esc.setPreferredSize(new Dimension(175, 20));
 
 		tVel_Esc = new JTextField(10);
 		
@@ -108,8 +108,8 @@ public class Agregar_Planeta extends JInternalFrame {
 		pVel_Esc.add(tVel_Esc);
 		
 		/** Distancia del Sol **/
-		lDist_Sol = new JLabel("Distancia media del Sol: ");
-		lDist_Sol.setPreferredSize(new Dimension(145, 20));
+		lDist_Sol = new JLabel("Distancia media del Sol(Ua): ");
+		lDist_Sol.setPreferredSize(new Dimension(175, 20));
 		
 		tDist_Sol = new JTextField(10);
 		
@@ -118,7 +118,7 @@ public class Agregar_Planeta extends JInternalFrame {
 		
 		/** Rotacion **/
 		lRotacion = new JLabel("Rotacion: ");
-		lRotacion.setPreferredSize(new Dimension(145, 20));
+		lRotacion.setPreferredSize(new Dimension(175, 20));
 		
 		tRotacion = new JTextField(10);
 		
@@ -127,7 +127,7 @@ public class Agregar_Planeta extends JInternalFrame {
 		
 		/** Cantidad de Satelites **/
 		lCant_Sat = new JLabel("¿Tiene Satelites?");
-		lCant_Sat.setPreferredSize(new Dimension(145, 20));
+		lCant_Sat.setPreferredSize(new Dimension(175, 20));
 		
 		tCantidadSat = new JTextField(2);
 		tCantidadSat.setText("0");
