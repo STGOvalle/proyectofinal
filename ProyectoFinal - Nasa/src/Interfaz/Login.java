@@ -21,7 +21,7 @@ import Aplicacion.Validaciones;
 
 public class Login extends JInternalFrame {
 	
-	JPanel panel;
+	JPanel panel, pContent, pUser, pPass, pBtn;
 	JLabel lUser, lPass;
 	JTextField tUser, tPass;
 	JButton btn_Login, btn_Invitado;
@@ -29,25 +29,38 @@ public class Login extends JInternalFrame {
 	public Login() {
 		super("Inicio de Sesión");
 		
-		// Creacion de Paneles
-		//jPrincipal = new JPanel();
-		
+		// Creacion de paneles
 		panel = new JPanel();
-		panel.setLayout(null);
+		panel.setLayout(new BorderLayout());
 		
-		// Panel izquierdo
+		pContent = new JPanel();
+		pContent.setLayout(new BoxLayout(pContent, BoxLayout.Y_AXIS));
+		
+		pUser = new JPanel(); /** Panel contenido usuario **/
+		pPass = new JPanel(); /** Panel contenido password **/
+		pBtn = new JPanel(); /** Panel Botones **/
+		
+		// Creacion de Label y TextField
+		// Usuario
 		lUser = new JLabel("Usuario:");
-		lUser.setBounds(40, 20, 60, 20);
+		lUser.setPreferredSize(new Dimension(80, 20));
+		
+		tUser = new JTextField(20);
+		
+		pUser.add(lUser);
+		pUser.add(tUser);
+		
+		// Password
 		lPass = new JLabel("Contraseña:");
-		lPass.setBounds(40, 50, 80, 20);
-		tUser = new JTextField();
-		tUser.setBounds(150, 20, 100, 20);
-		tPass = new JTextField();
-		tPass.setBounds(150, 50, 100, 20);
+		lPass.setPreferredSize(new Dimension(80, 20));
 		
+		tPass = new JTextField(20);
+		
+		pPass.add(lPass);
+		pPass.add(tPass);
+		
+		// Botones
 		btn_Login = new JButton("Iniciar");
-		btn_Login.setBounds(40, 80, 100, 30);
-		
 		btn_Login.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -56,18 +69,18 @@ public class Login extends JInternalFrame {
 		});
 		
 		btn_Invitado = new JButton("Invitado");
-		btn_Invitado.setBounds(150, 80, 100, 30);
 		
-
-		panel.add(lUser);
-		panel.add(tUser);
-		panel.add(lPass);
-		panel.add(tPass);
-		panel.add(btn_Login);
-		panel.add(btn_Invitado);
+		pBtn.add(btn_Login);
+		pBtn.add(btn_Invitado);
+		
+		// Agregar paneles a panel contenido
+		pContent.add(pUser);
+		pContent.add(pPass);
+		pContent.add(pBtn);
 		
 		
 		// Agregar a  Panel principal
+		panel.add(pContent);
 		add(panel, BorderLayout.CENTER);
 		setVisible(true);
 		this.dibuja_frame();
@@ -82,8 +95,7 @@ public class Login extends JInternalFrame {
 		int frame_anchura = d.width;
 		int frame_altura = d.height;
 		
-		setSize(300,170);
-		//pack();
+		pack();
 		setLocation(frame_anchura / 6, frame_altura / 6);
 	}
 	
