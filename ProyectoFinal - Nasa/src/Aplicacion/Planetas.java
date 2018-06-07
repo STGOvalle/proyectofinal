@@ -2,11 +2,11 @@ package Aplicacion;
 
 public class Planetas {
 
-	private String Nombre,Elem_org;
-	private double Diametro_p,Temperatura,Gravedad,Vel_Esc,Dist_Sol,Rotacion;
-	private int cant_satelites=0;
+	private String Nombre,Elem_org,Rotacion;
+	private double Gravedad,Vel_Esc;
+	private int Diametro_p,Temperatura,Dist_Sol,cant_satelites=0;
 	
-	public Planetas(double DP,String N,String EO,double T,double G,double VE,double DS,double R, int CS) {
+	public Planetas(int DP,String N,String EO,int T,double G,double VE,int DS,String R, int CS) {
 		
 		this.Diametro_p= DP;
 		this.Nombre= N;
@@ -35,19 +35,19 @@ public class Planetas {
 		Elem_org = elem_org;
 	}
 
-	public double getDiametro_p() {
+	public int getDiametro_p() {
 		return Diametro_p;
 	}
 
-	public void setDiametro_p(double diametro_p) {
+	public void setDiametro_p(int diametro_p) {
 		Diametro_p = diametro_p;
 	}
 
-	public double getTemperatura() {
+	public int getTemperatura() {
 		return Temperatura;
 	}
 
-	public void setTemperatura(double temperatura) {
+	public void setTemperatura(int temperatura) {
 		Temperatura = temperatura;
 	}
 
@@ -67,19 +67,19 @@ public class Planetas {
 		Vel_Esc = vel_Esc;
 	}
 
-	public double getDist_Sol() {
+	public int getDist_Sol() {
 		return Dist_Sol;
 	}
 
-	public void setDist_Sol(double dist_Sol) {
+	public void setDist_Sol(int dist_Sol) {
 		Dist_Sol = dist_Sol;
 	}
 
-	public double getRotacion() {
+	public String getRotacion() {
 		return Rotacion;
 	}
 
-	public void setRotacion(double rotacion) {
+	public void setRotacion(String rotacion) {
 		Rotacion = rotacion;
 	}
 
