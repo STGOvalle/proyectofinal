@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-//import java.awt.event.ItemEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -30,7 +29,7 @@ public class Agregar_Planeta extends JInternalFrame {
 	
 	
 	public Agregar_Planeta() {
-		super("Agregar Planeta", true, true, false);
+		super("Agregar Planeta", false, true, false);
 		
 		panel = new JPanel();
 		panel.setLayout(new BorderLayout());
@@ -191,6 +190,8 @@ public class Agregar_Planeta extends JInternalFrame {
 		pContent.add(pTemperatura);
 		pContent.add(pGravedad);
 		pContent.add(pVel_Esc);
+		pContent.add(pDist_sol);
+		pContent.add(pRotacion);
 		pContent.add(pCant_Sat);
 		pContent.add(pCant_Text);
 		pContent.add(pBtn);
@@ -217,21 +218,58 @@ public class Agregar_Planeta extends JInternalFrame {
 	public void Enviar_Form() {
 		
 		Validaciones val = new Validaciones();
-
-		String nombre = tNombre.getText();
-		String diametro = tDiametro.getText();
-		String elementoOrganico = tEOrganico.getText();
-		String temperatura = tTemperatura.getText();
-		String gravedad = tGravedad.getText();
-		String velescape = tVel_Esc.getText();
-		String distsol = tDist_Sol.getText();
-		String rotacion = tRotacion.getText();
-		String cant_sat = tCantidadSat.getText();
 		
-		if(val.campoVacio(nombre) == false || val.campoVacio(diametro) == false || val.campoVacio(elementoOrganico) == false || val.campoVacio(temperatura) == false
-				|| val.campoVacio(gravedad) == false || val.campoVacio(velescape) == false || val.campoVacio(distsol) == false || val.campoVacio(rotacion) == false || 
-				val.campoVacio(cant_sat) == false) {
-			JOptionPane.showMessageDialog(null, "No puedes dejar campos vacíos");
+		Principal p = (Principal)getDesktopPane().getTopLevelAncestor();
+		
+		// Validacion de Campo Nombre
+		if(!val.campoVacio(tNombre.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Nombre no puede estar vacio.");
+			tNombre.requestFocus();
+		} else if (!val.soloString(tNombre.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Nombre solo debe contener letras.");
+			tNombre.requestFocus();
+		// Validacion de Campo Diametro
+		} else if(!val.campoVacio(tDiametro.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Diametro no puede estar vacio.");
+			tDiametro.requestFocus();
+		} else if(!val.soloNum(tDiametro.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "En el campo Diametro solo deben ser numeros.");
+			tDiametro.requestFocus();
+		// Validacion de Campo Elemento Organico
+		} else if(!val.campoVacio(tEOrganico.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Elemento Organico no puede estar vacio.");
+			tEOrganico.requestFocus();
+		} else if(!val.soloString(tEOrganico.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Elemento Organico solo debe contener letras.");
+			tEOrganico.requestFocus();
+		// Validacion de Campo Temperatura
+		} else if(!val.campoVacio(tTemperatura.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Temperatura no puede estar vacio.");
+			tTemperatura.requestFocus();
+		// Validacion de Campo Gravedad
+		} else if(!val.campoVacio(tGravedad.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Gravedad no puede estar vacio.");
+			tGravedad.requestFocus();
+		// Validacion de Campo Velocidad de Escape
+		} else if(!val.campoVacio(tVel_Esc.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Velocidad de Escape no puede estar vacio.");
+			tVel_Esc.requestFocus();
+		// Validacion de Campo Distancia del Sol
+		} else if(!val.campoVacio(tDist_Sol.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Distancia del Sol no puede estar vacio.");
+			tDist_Sol.requestFocus();
+		// Validacion de Campo Rotacion
+		} else if(!val.campoVacio(tRotacion.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Rotacion no puede estar vacio.");
+			tRotacion.requestFocus();
+		// Validacion de Campo Cantidad de Satelites
+		} else if(!val.campoVacio(tCantidadSat.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Cantidad de Satelites no puede estar vacio.");
+		} else if(!val.soloNum(tCantidadSat.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Cantidad de Satelites solo debe contener Números.");
+		// Si todo está ok el formulario se guarda
+		} else {
+			JOptionPane.showInternalMessageDialog(p.DP, "El formulario se ha enviado con éxito");
 		}
 	}
 	

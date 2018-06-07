@@ -19,7 +19,7 @@ import javax.swing.UIManager;
 
 public class Principal extends JFrame{
 	
-	private JDesktopPane DP;
+	public JDesktopPane DP;
 	private JMenuBar barra;
 	public JMenu mInicio, mPlanetas;
 	public JMenuItem iCerrar, iAgregarP;

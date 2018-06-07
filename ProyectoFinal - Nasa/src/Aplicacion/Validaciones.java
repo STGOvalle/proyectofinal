@@ -12,36 +12,35 @@ public class Validaciones {
 		boolean res = false;
 		
 		if (cad.length() > 0) {
-			return res = true;
+			res = true;
 		}
 		
 		return res;
 	}
 	
 	public boolean soloString(String cad) {
-		boolean res = false;
 		Pattern P = Pattern.compile("(^[a-z A-Z]*$)");
 		Matcher mat = P.matcher(cad);
 		
-		boolean b = mat.matches();
-		
-		if (b) {
-			return res = true;
-		}
+		boolean res = mat.matches();
 		
 		return res;
 	}
 	
+	public boolean soloNum(String cad) {
+		Pattern P = Pattern.compile("(^[0-9]*$)");
+		Matcher mat = P.matcher(cad);
+		
+		boolean res = mat.matches();
+		return res;
+	}
+	
 	public boolean Rut(String cad) {
-		boolean res = false;
 		Pattern P = Pattern.compile("(^[1-9]{1}[0-9]?.[0-9]{3}.[0-9]{3}-([0-9]|K){1}$)");
 		Matcher mat = P.matcher(cad);
 		
-		boolean b = mat.matches();
+		boolean res = mat.matches();
 		
-		if(b) {
-			return res = true;
-		}
 		return res;
 	}
 }
