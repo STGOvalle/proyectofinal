@@ -1,8 +1,10 @@
 package Aplicacion;
 
 public class Usuarios {
-	private String Rut,Nombre,Apellido,fecha_nac,Nacionalidad,Estudio_carrera;
-	private int edad;
+	private String Rut,Nombre,Apellido,fecha_nac,Nacionalidad,Estudio_carrera, password, username;
+	private int edad, tipo_user;
+	
+	
 	public Usuarios(String R,String N,String APE,String FC,int E,String NAC,String EC) {
 		this.Rut= R;
 		this.Nombre =N;
@@ -11,8 +13,13 @@ public class Usuarios {
 		this.edad= E;
 		this.Nacionalidad =NAC;
 		this.Estudio_carrera =EC;
-		
 	}
+	public Usuarios(String u, String p, int tU) {
+		this.username = u;
+		this.password = p;
+		this.tipo_user = tU;
+	}
+
 	public String getRut() {
 		return Rut;
 	}
@@ -56,5 +63,28 @@ public class Usuarios {
 		this.edad = edad;
 	}
 	
+	public String getPassword() {
+		return password;
+	}
+	
+	public void setPassword(String p) {
+		this.password = p;
+	}
+	
+	public int getTipoUser() {
+		return tipo_user;
+	}
+	
+	public void setTipoUser(int TU) {
+		this.tipo_user = TU;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+	
+	public void setUsername(String u) {
+		this.username = u;
+	}
 	
 }

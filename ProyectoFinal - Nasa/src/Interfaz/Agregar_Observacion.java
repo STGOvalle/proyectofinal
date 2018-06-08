@@ -14,10 +14,13 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import Aplicacion.Validaciones;
 
 public class Agregar_Observacion extends JInternalFrame{
 	
@@ -28,10 +31,12 @@ public class Agregar_Observacion extends JInternalFrame{
 	JTextArea tObservacion;
 	Date fecha;
 	JButton btnGuardar, btnLimpiar;
+	Validaciones val;
 	
 	public Agregar_Observacion() {
 		super("Agregar Observación", false, true, false);
 		
+		val = new Validaciones();
 		// Paneles
 		panel = new JPanel();
 		panel.setLayout(new BorderLayout());
@@ -121,7 +126,12 @@ public class Agregar_Observacion extends JInternalFrame{
 	}
 	
 	public void Enviar_Form() {
+		Principal p = (Principal)getDesktopPane().getTopLevelAncestor();
 		
+		if(!val.campoVacio(tObservacion.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Observacion no puede estar vacio.");
+			tObservacion.requestFocus();
+		}
 	}
 	
 	public void Limpiar() {
@@ -130,14 +140,14 @@ public class Agregar_Observacion extends JInternalFrame{
 
 	public void dibuja_frame() {
 		// Asigna tamaño y posicionamiento
-		
+				Toolkit tk = Toolkit.getDefaultToolkit();
+				Dimension d = tk.getScreenSize();
 		//asigna ancho y alto
 		int frame_anchura = d.width;
 		int frame_altura = d.height;
 		
 		//setSize(frame_anchura, frame_altura);
 		pack();
-		setLocation(frame_anchura /2, frame_altura / 2);
 		setVisible(true);
 	}
 }

@@ -17,12 +17,15 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.UIManager;
 
+import Aplicacion.Usuarios;
+import Persistencia.Datos;
+
 public class Principal extends JFrame{
 	
 	public JDesktopPane DP;
 	private JMenuBar barra;
-	public JMenu mInicio, mPlanetas;
-	public JMenuItem iCerrar, iAgregarP;
+	public JMenu mInicio, mRegistros, mAdmin, mInfo;
+	public JMenuItem iCerrar, iAgregarP, iAgregarOb, iAgregarAs, iModPlaneta, iModAs, iModOb;
 	
 	public Principal() {
 		addWindowListener(new WindowAdapter() {
@@ -57,9 +60,14 @@ public class Principal extends JFrame{
 		
 		// Creacion de los Menu
 		mInicio = new JMenu("Inicio");
-		mPlanetas = new JMenu("Planetas");
+		mRegistros = new JMenu("Registros");
+		mAdmin = new JMenu("Administración");
+		mInfo = new JMenu("Informes");
 		
 		mInicio.setVisible(false); /** Menu inicia invisible, se habilitará solo cuando se inicie sesion **/
+		mRegistros.setVisible(false); /** Menu Planetas invisible, se habilitará solo cuando se inicie sesion **/
+		mAdmin.setVisible(false); /** Menu administración invisible, se habilitara solo cuando se inicie sesion **/
+		mInfo.setVisible(false); /** Menu informes invisible, se habiliatara solo cuando se inicie sesion **/
 		
 		// Creacion de los Items
 		/** Pestaña Inicio **/
@@ -73,15 +81,56 @@ public class Principal extends JFrame{
 		
 		mInicio.add(iCerrar);
 		
-		/** Pestaña Planetas **/
+		/** Pestaña Registros **/
 		iAgregarP = new JMenuItem("Agregar Planeta");
+		iAgregarP.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				abrir_agPlaneta();
+			}
+			
+		});
 		
+		iAgregarOb = new JMenuItem("Agregar Observacion");
+		iAgregarOb.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				abrir_agObservacion();
+			}
+			
+		});
 		
-		mPlanetas.add(iAgregarP);
+		mRegistros.add(iAgregarP);
+		mRegistros.add(iAgregarOb);
+		
+		/** Pestaña Administración **/
+		iAgregarAs = new JMenuItem("Agregar Astronomo");
+		iAgregarAs.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				abrir_agAstronomo();
+			}
+			
+		});
+		
+		iModAs = new JMenuItem("Modificar Astronomo");		
+		iModOb = new JMenuItem("Modificar Observacion");
+		iModPlaneta = new JMenuItem("Modificar Planeta");
+		
+		mAdmin.add(iAgregarAs);
+		mAdmin.addSeparator();
+		mAdmin.add(iModAs);
+		mAdmin.add(iModOb);
+		mAdmin.add(iModPlaneta);
 		
 		//Agregar menu a la barra	
 		barra.add(mInicio);
-		barra.add(mPlanetas);
+		barra.add(mRegistros);
+		barra.add(mAdmin);
+		barra.add(mInfo);
 		
 		this.abrir_Login();
 		
@@ -125,12 +174,31 @@ public class Principal extends JFrame{
 	
 	public void abrir_Login() {
 		//Login L = new Login();
-		Agregar_Observacion L = new Agregar_Observacion();
+		Login L = new Login();
 		DP.add(L);
+		
+	}
+	
+	public void abrir_agPlaneta() {
+		Agregar_Planeta AG = new Agregar_Planeta();
+		DP.add(AG);
+	}
+	
+	public void abrir_agObservacion() {
+		Agregar_Observacion AG = new Agregar_Observacion();
+		DP.add(AG);
+	}
+	
+	public void abrir_agAstronomo() {
+		Agregar_Astronomo AG = new Agregar_Astronomo();
+		DP.add(AG);
 	}
 	
 	public void Logout() {
 		abrir_Login();
 		this.mInicio.setVisible(false);
+		this.mAdmin.setVisible(false);
+		this.mInfo.setVisible(false);
+		this.mRegistros.setVisible(false);
 	}
 }

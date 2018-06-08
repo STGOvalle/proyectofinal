@@ -68,7 +68,17 @@ public class Login extends JInternalFrame {
 			}
 		});
 		
-		btn_Invitado = new JButton("Invitado");
+		btn_Invitado = new JButton("Usuario General");
+		btn_Invitado.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Principal P = (Principal)getDesktopPane().getTopLevelAncestor();
+				
+				P.mInfo.setVisible(true);
+				P.mInicio.setVisible(true);
+				dispose();
+			}
+		});
 		
 		pBtn.add(btn_Login);
 		pBtn.add(btn_Invitado);
@@ -96,7 +106,6 @@ public class Login extends JInternalFrame {
 		int frame_altura = d.height;
 		
 		pack();
-		setLocation(frame_anchura / 6, frame_altura / 6);
 	}
 	
 	public void Login() {
@@ -111,8 +120,19 @@ public class Login extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, "No puedes dejar Campos Vacios");
 		} else if (Val.soloString(user) == false) {
 			JOptionPane.showMessageDialog(null, "El campo usuario, solo debe contener letras.");
+		} else if(!Val.validarUsuario(user, pass)) {
+			JOptionPane.showMessageDialog(null, "Usuario y/o contraseña Incorrecto");
 		} else {
-			P.mInicio.setVisible(true);
+			if (Val.validarTipoUser(user) == 1)  {
+				P.mInicio.setVisible(true);
+				P.mAdmin.setVisible(true);
+				P.mRegistros.setVisible(true);
+				P.mInfo.setVisible(true);
+			} else if(Val.validarTipoUser(user) == 0) {
+				P.mInicio.setVisible(true);
+				P.mRegistros.setVisible(true);
+				P.mInfo.setVisible(true);
+			}
 			dispose(); /** Cerrar internal Frame **/
 		}
 	}

@@ -3,6 +3,8 @@ package Aplicacion;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import Persistencia.Datos;
+
 public class Validaciones {
 	public Validaciones() {
 		
@@ -57,6 +59,37 @@ public class Validaciones {
 		Matcher mat = P.matcher(cad);
 		
 		boolean res = mat.matches();
+		
+		return res;
+	}
+	
+	public boolean validarUsuario(String User, String Pass) {
+		boolean res = false;
+		Datos d = new Datos();
+		
+		
+		Usuarios obj_temp;
+		for (int i = 0; i<d.data.size(); i++) {
+			obj_temp = (Usuarios)Datos.data.get(i);
+			if (obj_temp.getUsername().equals(User) && obj_temp.getPassword().equals(Pass)) {
+				res = true;
+			}
+		}
+		return res;
+	}
+	
+	public int validarTipoUser(String User) {
+		int res = 0;
+		Datos d = new Datos();
+		Usuarios obj_temp;
+		
+		for(int i = 0; i<d.data.size(); i++) {
+			obj_temp = (Usuarios)Datos.data.get(i);
+			
+			if (obj_temp.getUsername().equals(User)) {
+				res = obj_temp.getTipoUser();
+			}
+		}
 		
 		return res;
 	}

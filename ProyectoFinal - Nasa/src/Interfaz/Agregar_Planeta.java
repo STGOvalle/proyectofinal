@@ -212,7 +212,6 @@ public class Agregar_Planeta extends JInternalFrame {
 		int frame_altura = d.height;
 		
 		pack();
-		setLocation(frame_anchura / 6, frame_altura / 6);
 	}
 	
 	public void Enviar_Form() {
