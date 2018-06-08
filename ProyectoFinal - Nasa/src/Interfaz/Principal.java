@@ -96,9 +96,10 @@ public class Principal extends JFrame{
 		int frame_anchura = d.width;
 		int frame_altura = d.height;
 		
-		setSize(frame_anchura / 2, frame_altura / 2);
+		//setSize(frame_anchura, frame_altura);
+		this.setExtendedState(MAXIMIZED_BOTH);
 		//pack();
-		setLocation(frame_anchura / 4, frame_altura / 4);
+		//setLocation(frame_anchura / 4, frame_altura / 4);
 	}
 	
 	public static void main(String [] args) {
@@ -124,7 +125,7 @@ public class Principal extends JFrame{
 	
 	public void abrir_Login() {
 		//Login L = new Login();
-		Agregar_Planeta L = new Agregar_Planeta();
+		Agregar_Observacion L = new Agregar_Observacion();
 		DP.add(L);
 	}
 	

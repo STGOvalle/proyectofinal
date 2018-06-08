@@ -246,17 +246,29 @@ public class Agregar_Planeta extends JInternalFrame {
 		} else if(!val.campoVacio(tTemperatura.getText())) {
 			JOptionPane.showInternalMessageDialog(p.DP, "El campo Temperatura no puede estar vacio.");
 			tTemperatura.requestFocus();
+		} else if(!val.soloNum(tTemperatura.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Temperatura solo deben ser numeros.");
+			tTemperatura.requestFocus();
 		// Validacion de Campo Gravedad
 		} else if(!val.campoVacio(tGravedad.getText())) {
 			JOptionPane.showInternalMessageDialog(p.DP, "El campo Gravedad no puede estar vacio.");
+			tGravedad.requestFocus();
+		} else if(!val.esDoble(tGravedad.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Gravedad solo debe contener numeros decimales.");
 			tGravedad.requestFocus();
 		// Validacion de Campo Velocidad de Escape
 		} else if(!val.campoVacio(tVel_Esc.getText())) {
 			JOptionPane.showInternalMessageDialog(p.DP, "El campo Velocidad de Escape no puede estar vacio.");
 			tVel_Esc.requestFocus();
+		} else if(!val.esDoble(tVel_Esc.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Velocidad de Escape solo debe contener numeros decimales.");
+			tVel_Esc.requestFocus();
 		// Validacion de Campo Distancia del Sol
 		} else if(!val.campoVacio(tDist_Sol.getText())) {
 			JOptionPane.showInternalMessageDialog(p.DP, "El campo Distancia del Sol no puede estar vacio.");
+			tDist_Sol.requestFocus();
+		} else if(!val.soloNum(tDist_Sol.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Distancia del Sol solo deben ser numeros.");
 			tDist_Sol.requestFocus();
 		// Validacion de Campo Rotacion
 		} else if(!val.campoVacio(tRotacion.getText())) {
