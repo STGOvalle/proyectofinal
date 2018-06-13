@@ -71,7 +71,8 @@ public class Principal extends JFrame{
 		
 		// Creacion de los Items
 		/** Pestaña Inicio **/
-		iCerrar = new JMenuItem("Cerrar Sesion");
+		ImageIcon iCerraI = new ImageIcon("imagenes/icon_logout.png");
+		iCerrar = new Plantilla_MenuItem(iCerraI, "Cerrar Sesión");
 		iCerrar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -82,7 +83,8 @@ public class Principal extends JFrame{
 		mInicio.add(iCerrar);
 		
 		/** Pestaña Registros **/
-		iAgregarP = new JMenuItem("Agregar Planeta");
+		ImageIcon iAdd = new ImageIcon("imagenes/icon_add.png");
+		iAgregarP = new Plantilla_MenuItem(iAdd, "Agregar Planeta");
 		iAgregarP.addActionListener(new ActionListener() {
 
 			@Override
@@ -92,7 +94,7 @@ public class Principal extends JFrame{
 			
 		});
 		
-		iAgregarOb = new JMenuItem("Agregar Observacion");
+		iAgregarOb = new Plantilla_MenuItem(iAdd, "Agregar Observacion");
 		iAgregarOb.addActionListener(new ActionListener() {
 
 			@Override
@@ -106,7 +108,7 @@ public class Principal extends JFrame{
 		mRegistros.add(iAgregarOb);
 		
 		/** Pestaña Administración **/
-		iAgregarAs = new JMenuItem("Agregar Astronomo");
+		iAgregarAs = new Plantilla_MenuItem(iAdd, "Agregar Astronomo");
 		iAgregarAs.addActionListener(new ActionListener() {
 
 			@Override
@@ -116,9 +118,10 @@ public class Principal extends JFrame{
 			
 		});
 		
-		iModAs = new JMenuItem("Modificar Astronomo");		
-		iModOb = new JMenuItem("Modificar Observacion");
-		iModPlaneta = new JMenuItem("Modificar Planeta");
+		ImageIcon iMod = new ImageIcon("imagenes/icon_mod.png");
+		iModAs = new Plantilla_MenuItem(iMod, "Modificar Astronomo");		
+		iModOb = new Plantilla_MenuItem(iMod, "Modificar Observacion");
+		iModPlaneta = new Plantilla_MenuItem(iMod, "Modificar Planeta");
 		
 		mAdmin.add(iAgregarAs);
 		mAdmin.addSeparator();
@@ -131,24 +134,24 @@ public class Principal extends JFrame{
 		barra.add(mRegistros);
 		barra.add(mAdmin);
 		barra.add(mInfo);
-		
+		this.dibuja_frame();
+		this.setVisible(true);
 		this.abrir_Login();
 		
 	}
 	
 	public void dibuja_frame() {
 		// Asigna tamaño y posicionamiento
-		Toolkit tk = Toolkit.getDefaultToolkit();
-		Dimension d = tk.getScreenSize();
-		
-		//asigna ancho y alto
-		int frame_anchura = d.width;
-		int frame_altura = d.height;
-		
-		//setSize(frame_anchura, frame_altura);
-		this.setExtendedState(MAXIMIZED_BOTH);
-		//pack();
-		//setLocation(frame_anchura / 4, frame_altura / 4);
+				Toolkit tk = Toolkit.getDefaultToolkit();
+				Dimension d = tk.getScreenSize();
+				
+				//asigna ancho y alto
+				int frame_anchura = d.width;
+				int frame_altura = d.height;
+				
+				setSize(frame_anchura / 2, frame_altura / 2);
+				//pack();
+				setLocation(frame_anchura / 4, frame_altura / 4);
 	}
 	
 	public static void main(String [] args) {
@@ -161,8 +164,7 @@ public class Principal extends JFrame{
 			e.printStackTrace();
 		}
 		Principal P = new Principal();
-		P.dibuja_frame();
-		P.setVisible(true);
+	
 	}
 	
 	public void poner_icono() {
@@ -175,23 +177,36 @@ public class Principal extends JFrame{
 	public void abrir_Login() {
 		//Login L = new Login();
 		Login L = new Login();
+		Dimension desktopSize = DP.getSize();
+		Dimension FrameSize = L.getSize();
+		L.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height - FrameSize.height)/2);
 		DP.add(L);
 		
 	}
 	
 	public void abrir_agPlaneta() {
 		Agregar_Planeta AG = new Agregar_Planeta();
+		Dimension desktopSize = DP.getSize();
+		Dimension FrameSize = AG.getSize();
+		AG.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height - FrameSize.height)/2);
 		DP.add(AG);
 	}
 	
 	public void abrir_agObservacion() {
 		Agregar_Observacion AG = new Agregar_Observacion();
+		Dimension desktopSize = DP.getSize();
+		Dimension FrameSize = AG.getSize();
+		AG.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height - FrameSize.height)/2);
 		DP.add(AG);
 	}
 	
 	public void abrir_agAstronomo() {
 		Agregar_Astronomo AG = new Agregar_Astronomo();
+		Dimension desktopSize = DP.getSize();
+		Dimension FrameSize = AG.getSize();
+		AG.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height - FrameSize.height)/2);
 		DP.add(AG);
+		
 	}
 	
 	public void Logout() {

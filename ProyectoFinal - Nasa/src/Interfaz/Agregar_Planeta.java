@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -162,7 +163,8 @@ public class Agregar_Planeta extends JInternalFrame {
 		pCant_Text.add(tCantidadSat);
 		
 		/** Boton Guardar **/
-		btn_Guardar = new JButton("Guardar");
+		ImageIcon iSave = new ImageIcon("imagenes/icon_save.png");
+		btn_Guardar = new Plantilla_JButton(iSave, "Guardar");
 		btn_Guardar.setBounds(7, 310, 150, 40);
 		btn_Guardar.addActionListener(new ActionListener() {
 			@Override
@@ -171,7 +173,8 @@ public class Agregar_Planeta extends JInternalFrame {
 			}
 		});
 		
-		btn_Limpiar = new JButton("Limpiar");
+		ImageIcon iLimpiar = new ImageIcon("imagenes/icon_limpiar.png");
+		btn_Limpiar = new Plantilla_JButton(iLimpiar, "Limpiar");
 		btn_Limpiar.setBounds(160, 310, 150, 40);
 		btn_Limpiar.addActionListener(new ActionListener() {
 			@Override

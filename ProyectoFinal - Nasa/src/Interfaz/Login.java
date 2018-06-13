@@ -3,11 +3,13 @@ package Interfaz;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -18,6 +20,7 @@ import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
 import Aplicacion.Validaciones;
+import Interfaz.Plantilla_JButton;
 
 public class Login extends JInternalFrame {
 	
@@ -60,7 +63,8 @@ public class Login extends JInternalFrame {
 		pPass.add(tPass);
 		
 		// Botones
-		btn_Login = new JButton("Iniciar");
+		ImageIcon iconobtn = new ImageIcon("imagenes/icon_login.png");
+		btn_Login = new Plantilla_JButton(iconobtn, "Iniciar Sesión");
 		btn_Login.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -68,7 +72,8 @@ public class Login extends JInternalFrame {
 			}
 		});
 		
-		btn_Invitado = new JButton("Usuario General");
+		ImageIcon iconobtn2 = new ImageIcon("imagenes/icon_invitado.png");
+		btn_Invitado = new Plantilla_JButton(iconobtn2, "Invitado");
 		btn_Invitado.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -91,22 +96,19 @@ public class Login extends JInternalFrame {
 		
 		// Agregar a  Panel principal
 		panel.add(pContent);
-		add(panel, BorderLayout.CENTER);
-		setVisible(true);
-		this.dibuja_frame();
+		this.add(panel, BorderLayout.CENTER);
+		this.setVisible(true);
+		//this.dibuja_frame();
+		pack();
+		this.poner_icono();
+	}
+	
+	public void poner_icono() {
+		ImageIcon icon = new ImageIcon("imagenes/nasa-ico.png");
+		this.setFrameIcon(icon);
 	}
 
-	public void dibuja_frame() {
-		// Asigna tamaño y posicionamiento
-		Toolkit tk = Toolkit.getDefaultToolkit();
-		Dimension d = tk.getScreenSize();
-		
-		//asigna ancho y alto
-		int frame_anchura = d.width;
-		int frame_altura = d.height;
-		
-		pack();
-	}
+
 	
 	public void Login() {
 		Principal P = (Principal)getDesktopPane().getTopLevelAncestor();

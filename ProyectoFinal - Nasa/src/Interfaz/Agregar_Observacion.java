@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
@@ -88,7 +89,8 @@ public class Agregar_Observacion extends JInternalFrame{
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		
 		/** Botones **/
-		btnGuardar = new JButton("Guardar");
+		ImageIcon iSave = new ImageIcon("imagenes/icon_save.png");
+		btnGuardar = new Plantilla_JButton(iSave, "Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
 
 			@Override
@@ -98,7 +100,8 @@ public class Agregar_Observacion extends JInternalFrame{
 			
 		});
 		
-		btnLimpiar = new JButton("Limpiar");
+		ImageIcon iLimpiar = new ImageIcon("imagenes/icon_limpiar.png");
+		btnLimpiar = new Plantilla_JButton(iLimpiar, "Limpiar");
 		btnLimpiar.addActionListener(new ActionListener() {
 
 			@Override

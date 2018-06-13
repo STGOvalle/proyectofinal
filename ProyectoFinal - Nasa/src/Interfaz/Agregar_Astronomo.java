@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -108,7 +109,8 @@ public class Agregar_Astronomo extends JInternalFrame {
 		pCarrera.add(tCarr);
 		
 		/** Botones **/
-		btnGuardar = new JButton("Guardar");
+		ImageIcon iSave = new ImageIcon("imagenes/icon_save.png");
+		btnGuardar = new Plantilla_JButton(iSave, "Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
 
 			@Override
@@ -118,7 +120,8 @@ public class Agregar_Astronomo extends JInternalFrame {
 			
 		});
 		
-		btnLimpiar = new JButton("Limpiar");
+		ImageIcon iLimpiar = new ImageIcon("imagenes/icon_limpiar.png");
+		btnLimpiar = new Plantilla_JButton(iLimpiar, "Limpiar");
 		btnLimpiar.addActionListener(new ActionListener() {
 
 			@Override
