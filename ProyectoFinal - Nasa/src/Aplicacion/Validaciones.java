@@ -3,7 +3,6 @@ package Aplicacion;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import Persistencia.Datos;
 
 public class Validaciones {
 	public Validaciones() {
@@ -63,7 +62,7 @@ public class Validaciones {
 		return res;
 	}
 	
-	public boolean validarUsuario(String User, String Pass) {
+	/**public boolean validarUsuario(String User, String Pass) {
 		boolean res = false;
 		Datos d = new Datos();
 		
@@ -92,5 +91,5 @@ public class Validaciones {
 		}
 		
 		return res;
-	}
+	}**/
 }

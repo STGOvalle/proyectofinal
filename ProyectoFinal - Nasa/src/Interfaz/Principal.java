@@ -18,7 +18,6 @@ import javax.swing.JMenuItem;
 import javax.swing.UIManager;
 
 import Aplicacion.Usuarios;
-import Persistencia.Datos;
 
 public class Principal extends JFrame{
 	

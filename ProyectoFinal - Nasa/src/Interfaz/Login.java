@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -19,13 +20,16 @@ import javax.swing.JTextField;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
+import Aplicacion.Usuarios;
 import Aplicacion.Validaciones;
 import Interfaz.Plantilla_JButton;
+import Persistencia.SqlUsuarios;
+import Persistencia.conexion;
 
 public class Login extends JInternalFrame {
 	
-	JPanel panel, pContent, pUser, pPass, pBtn;
-	JLabel lUser, lPass;
+	JPanel panel, pContent, pUser, pPass, pBtn, pLogo;
+	JLabel lUser, lPass, lLogo;
 	JTextField tUser, tPass;
 	JButton btn_Login, btn_Invitado;
 	
@@ -39,16 +43,27 @@ public class Login extends JInternalFrame {
 		pContent = new JPanel();
 		pContent.setLayout(new BoxLayout(pContent, BoxLayout.Y_AXIS));
 		
+		pLogo = new JPanel();
 		pUser = new JPanel(); /** Panel contenido usuario **/
 		pPass = new JPanel(); /** Panel contenido password **/
 		pBtn = new JPanel(); /** Panel Botones **/
+		
+		
+		// Creacion Panel de Logo
+		lLogo = new JLabel();
+		ImageIcon iLogo = new ImageIcon("imagenes/logo_analista.png");
+		int alto = 179;
+		int ancho = 245;
+		ImageIcon logo = new ImageIcon(iLogo.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT));
+		lLogo.setIcon(logo);
+		pLogo.add(lLogo);
 		
 		// Creacion de Label y TextField
 		// Usuario
 		lUser = new JLabel("Usuario:");
 		lUser.setPreferredSize(new Dimension(80, 20));
 		
-		tUser = new JTextField(20);
+		tUser = new JTextField(15);
 		
 		pUser.add(lUser);
 		pUser.add(tUser);
@@ -57,7 +72,7 @@ public class Login extends JInternalFrame {
 		lPass = new JLabel("Contraseña:");
 		lPass.setPreferredSize(new Dimension(80, 20));
 		
-		tPass = new JTextField(20);
+		tPass = new JTextField(15);
 		
 		pPass.add(lPass);
 		pPass.add(tPass);
@@ -89,6 +104,7 @@ public class Login extends JInternalFrame {
 		pBtn.add(btn_Invitado);
 		
 		// Agregar paneles a panel contenido
+		pContent.add(pLogo);
 		pContent.add(pUser);
 		pContent.add(pPass);
 		pContent.add(pBtn);
@@ -101,6 +117,8 @@ public class Login extends JInternalFrame {
 		//this.dibuja_frame();
 		pack();
 		this.poner_icono();
+		
+
 	}
 	
 	public void poner_icono() {
@@ -122,20 +140,29 @@ public class Login extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, "No puedes dejar Campos Vacios");
 		} else if (Val.soloString(user) == false) {
 			JOptionPane.showMessageDialog(null, "El campo usuario, solo debe contener letras.");
-		} else if(!Val.validarUsuario(user, pass)) {
-			JOptionPane.showMessageDialog(null, "Usuario y/o contraseña Incorrecto");
 		} else {
-			if (Val.validarTipoUser(user) == 1)  {
-				P.mInicio.setVisible(true);
-				P.mAdmin.setVisible(true);
-				P.mRegistros.setVisible(true);
-				P.mInfo.setVisible(true);
-			} else if(Val.validarTipoUser(user) == 0) {
-				P.mInicio.setVisible(true);
-				P.mRegistros.setVisible(true);
-				P.mInfo.setVisible(true);
-			}
-			dispose(); /** Cerrar internal Frame **/
+				SqlUsuarios modSql = new SqlUsuarios();
+				Usuarios mod = new Usuarios();
+				
+				mod.setUsername(user);
+				mod.setPassword(pass);
+				
+				if (modSql.login(mod)) {
+					if (mod.getTipoUser() == 1) {
+						P.mInicio.setVisible(true);
+						P.mAdmin.setVisible(true);
+						P.mRegistros.setVisible(true);
+						P.mInfo.setVisible(true);
+						this.dispose();
+					} else if(mod.getTipoUser() == 2) {
+						P.mInicio.setVisible(true);
+						P.mRegistros.setVisible(true);
+						P.mInfo.setVisible(true);
+						this.dispose();
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "Usuario y/o contraseña Incorrecto");
+				}
 		}
 	}
 }

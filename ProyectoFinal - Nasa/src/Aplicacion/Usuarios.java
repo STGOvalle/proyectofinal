@@ -4,6 +4,9 @@ public class Usuarios {
 	private String Rut,Nombre,Apellido,fecha_nac,Nacionalidad,Estudio_carrera, password, username;
 	private int edad, tipo_user;
 	
+	public Usuarios() {
+		
+	}
 	
 	public Usuarios(String R,String N,String APE,String FC,int E,String NAC,String EC) {
 		this.Rut= R;
