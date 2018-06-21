@@ -118,7 +118,15 @@ public class Principal extends JFrame{
 		});
 		
 		ImageIcon iMod = new ImageIcon("imagenes/icon_mod.png");
-		iModAs = new Plantilla_MenuItem(iMod, "Modificar Astronomo");		
+		iModAs = new Plantilla_MenuItem(iMod, "Modificar Astronomo");	
+		iModAs.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				abrir_modAstronomo();
+			}
+			
+		});
 		iModOb = new Plantilla_MenuItem(iMod, "Modificar Observacion");
 		iModPlaneta = new Plantilla_MenuItem(iMod, "Modificar Planeta");
 		
@@ -175,7 +183,7 @@ public class Principal extends JFrame{
 	
 	public void abrir_Login() {
 		//Login L = new Login();
-		Login L = new Login();
+		Agregar_Planeta L = new Agregar_Planeta();
 		Dimension desktopSize = DP.getSize();
 		Dimension FrameSize = L.getSize();
 		L.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height - FrameSize.height)/2);
@@ -201,6 +209,15 @@ public class Principal extends JFrame{
 	
 	public void abrir_agAstronomo() {
 		Agregar_Astronomo AG = new Agregar_Astronomo();
+		Dimension desktopSize = DP.getSize();
+		Dimension FrameSize = AG.getSize();
+		AG.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height - FrameSize.height)/2);
+		DP.add(AG);
+		
+	}
+	
+	public void abrir_modAstronomo() {
+		Modificar_Astronomo AG = new Modificar_Astronomo();
 		Dimension desktopSize = DP.getSize();
 		Dimension FrameSize = AG.getSize();
 		AG.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height - FrameSize.height)/2);

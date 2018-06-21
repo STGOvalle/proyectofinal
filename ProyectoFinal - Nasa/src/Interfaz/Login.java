@@ -16,6 +16,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
@@ -30,7 +31,8 @@ public class Login extends JInternalFrame {
 	
 	JPanel panel, pContent, pUser, pPass, pBtn, pLogo;
 	JLabel lUser, lPass, lLogo;
-	JTextField tUser, tPass;
+	JTextField tUser;
+	JPasswordField tPass;
 	JButton btn_Login, btn_Invitado;
 	
 	public Login() {
@@ -60,7 +62,7 @@ public class Login extends JInternalFrame {
 		
 		// Creacion de Label y TextField
 		// Usuario
-		lUser = new JLabel("Usuario:");
+		lUser = new JLabel("RUT:");
 		lUser.setPreferredSize(new Dimension(80, 20));
 		
 		tUser = new JTextField(15);
@@ -72,7 +74,7 @@ public class Login extends JInternalFrame {
 		lPass = new JLabel("Contraseña:");
 		lPass.setPreferredSize(new Dimension(80, 20));
 		
-		tPass = new JTextField(15);
+		tPass = new JPasswordField(15);
 		
 		pPass.add(lPass);
 		pPass.add(tPass);
@@ -132,19 +134,19 @@ public class Login extends JInternalFrame {
 		Principal P = (Principal)getDesktopPane().getTopLevelAncestor();
 		
 		String user = tUser.getText();
-		String pass = tPass.getText();
+		String pass = new String(tPass.getPassword());
 		
 		Validaciones Val = new Validaciones();
 		
 		if (Val.campoVacio(user) == false || Val.campoVacio(pass) == false) {
 			JOptionPane.showMessageDialog(null, "No puedes dejar Campos Vacios");
-		} else if (Val.soloString(user) == false) {
-			JOptionPane.showMessageDialog(null, "El campo usuario, solo debe contener letras.");
+		} else if (Val.Rut(user) == false) {
+			JOptionPane.showMessageDialog(null, "El campo RUT, no es un rut valido.");
 		} else {
 				SqlUsuarios modSql = new SqlUsuarios();
-				Usuarios mod = new Usuarios();
+				Usuarios mod = new Usuarios();	
 				
-				mod.setUsername(user);
+				mod.setRut(user);
 				mod.setPassword(pass);
 				
 				if (modSql.login(mod)) {

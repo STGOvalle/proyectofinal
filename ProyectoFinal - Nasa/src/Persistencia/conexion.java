@@ -3,6 +3,7 @@ package Persistencia;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class conexion {
 	private static Connection con;
@@ -29,9 +30,11 @@ public class conexion {
 	}
 	
 	public void desconectar() {
-		con = null;
-		if (con == null) {
-			System.out.println("Desconexion realizada.");
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
