@@ -22,6 +22,17 @@ public class Usuarios {
 		this.password = p;
 		this.tipo_user = tU;
 	}
+	
+	public Usuarios(String R,String N,String APE,String FC,int E,String NAC,String EC, String P) {
+		this.Rut= R;
+		this.Nombre =N;
+		this.Apellido = APE;
+		this.fecha_nac =FC;
+		this.edad= E;
+		this.Nacionalidad =NAC;
+		this.Estudio_carrera =EC;
+		this.password = P;
+	}
 
 	public String getRut() {
 		return Rut;
@@ -67,7 +78,7 @@ public class Usuarios {
 	}
 	
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 	
 	public void setPassword(String p) {

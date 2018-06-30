@@ -21,6 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
+import Aplicacion.Controladora;
 import Aplicacion.Usuarios;
 import Aplicacion.Validaciones;
 import Interfaz.Plantilla_JButton;
@@ -143,20 +144,20 @@ public class Login extends JInternalFrame {
 		} else if (Val.Rut(user) == false) {
 			JOptionPane.showMessageDialog(null, "El campo RUT, no es un rut valido.");
 		} else {
-				SqlUsuarios modSql = new SqlUsuarios();
-				Usuarios mod = new Usuarios();	
+				//SqlUsuarios modSql = new SqlUsuarios();
+				//Usuarios mod = new Usuarios();	
 				
-				mod.setRut(user);
-				mod.setPassword(pass);
+				Controladora ctrl = new Controladora();
+				Usuarios logueo = ctrl.getLogin(user, pass);
 				
-				if (modSql.login(mod)) {
-					if (mod.getTipoUser() == 1) {
+				if(logueo != null) {
+					if (logueo.getTipoUser() == 1) {
 						P.mInicio.setVisible(true);
 						P.mAdmin.setVisible(true);
 						P.mRegistros.setVisible(true);
 						P.mInfo.setVisible(true);
 						this.dispose();
-					} else if(mod.getTipoUser() == 2) {
+					} else if (logueo.getTipoUser() == 2) {
 						P.mInicio.setVisible(true);
 						P.mRegistros.setVisible(true);
 						P.mInfo.setVisible(true);
@@ -165,6 +166,7 @@ public class Login extends JInternalFrame {
 				} else {
 					JOptionPane.showMessageDialog(null, "Usuario y/o contraseña Incorrecto");
 				}
+				
 		}
 	}
 }

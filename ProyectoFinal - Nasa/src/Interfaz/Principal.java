@@ -18,6 +18,7 @@ import javax.swing.JMenuItem;
 import javax.swing.UIManager;
 
 import Aplicacion.Usuarios;
+import Persistencia.SqlUsuarios;
 
 public class Principal extends JFrame{
 	
@@ -128,7 +129,23 @@ public class Principal extends JFrame{
 			
 		});
 		iModOb = new Plantilla_MenuItem(iMod, "Modificar Observacion");
+		iModOb.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				abrir_modObservacion();
+			}
+			
+		});
 		iModPlaneta = new Plantilla_MenuItem(iMod, "Modificar Planeta");
+		iModPlaneta.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				abrir_modPlaneta();
+			}
+			
+		});
 		
 		mAdmin.add(iAgregarAs);
 		mAdmin.addSeparator();
@@ -183,7 +200,7 @@ public class Principal extends JFrame{
 	
 	public void abrir_Login() {
 		//Login L = new Login();
-		Agregar_Planeta L = new Agregar_Planeta();
+		Login L = new Login();
 		Dimension desktopSize = DP.getSize();
 		Dimension FrameSize = L.getSize();
 		L.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height - FrameSize.height)/2);
@@ -225,11 +242,29 @@ public class Principal extends JFrame{
 		
 	}
 	
+	public void abrir_modObservacion() {
+		Modificar_Observacion AG = new Modificar_Observacion();
+		Dimension desktopSize = DP.getSize();
+		Dimension FrameSize = AG.getSize();
+		AG.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height - FrameSize.height)/2);
+		DP.add(AG);
+		
+	}
+	
+	public void abrir_modPlaneta() {
+		Modificar_Planetas AG = new Modificar_Planetas();
+		Dimension desktopSize = DP.getSize();
+		Dimension FrameSize = AG.getSize();
+		AG.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height - FrameSize.height)/2);
+		DP.add(AG);
+	}
+	
 	public void Logout() {
 		abrir_Login();
 		this.mInicio.setVisible(false);
 		this.mAdmin.setVisible(false);
 		this.mInfo.setVisible(false);
 		this.mRegistros.setVisible(false);
+
 	}
 }

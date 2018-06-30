@@ -47,15 +47,13 @@ public class Sqltabla extends conexion{
 	public Object[] getAstronomo(String rut) {
 		Object[] data = new Object[7];
 		try {
-			PreparedStatement ps = null;
-			ResultSet rs = null;
 			Connection con = this.getConnection();
 			
 			String sql = "SELECT rut, nombre, apellido, edad, fecha_nac, nacionalidad, estudio_carrera FROM usuarios WHERE rut = ?";
 			
-			ps = con.prepareStatement(sql);
+			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, rut);
-			rs = ps.executeQuery();
+			ResultSet rs = ps.executeQuery();
 			
 			ResultSetMetaData rsMd = rs.getMetaData();
 			int cantidadColumnas = rsMd.getColumnCount();

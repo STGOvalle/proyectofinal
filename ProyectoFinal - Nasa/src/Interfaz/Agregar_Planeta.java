@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import Aplicacion.Controladora;
 import Aplicacion.Planetas;
 import Aplicacion.Validaciones;
 import Persistencia.SqlPlanetas;
@@ -285,12 +286,10 @@ public class Agregar_Planeta extends JInternalFrame {
 			JOptionPane.showInternalMessageDialog(p.DP, "El campo Cantidad de Satelites solo debe contener Números.");
 		// Si todo está ok el formulario se guarda
 		} else {
-			SqlPlanetas con = new SqlPlanetas();
-			Planetas pln = new Planetas(Integer.parseInt(tDiametro.getText()), tNombre.getText(), tEOrganico.getText(),
+			Controladora ctrl = new Controladora(); 
+			boolean res = ctrl.crearPlaneta(new Planetas(Integer.parseInt(tDiametro.getText()), tNombre.getText(), tEOrganico.getText(),
 					Integer.parseInt(tTemperatura.getText()), Double.parseDouble(tGravedad.getText()), Double.parseDouble(tVel_Esc.getText()),
-					Integer.parseInt(tDist_Sol.getText()), tRotacion.getText(), Integer.parseInt(tCantidadSat.getText()));
-			
-			boolean res = con.agregarPlaneta(pln);
+					Integer.parseInt(tDist_Sol.getText()), tRotacion.getText(), Integer.parseInt(tCantidadSat.getText())));
 			
 			if(res) {
 				JOptionPane.showInternalMessageDialog(p.DP, "El formulario se ha enviado con éxito");

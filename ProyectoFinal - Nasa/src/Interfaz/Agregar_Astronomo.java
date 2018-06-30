@@ -14,13 +14,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Aplicacion.Controladora;
+import Aplicacion.Usuarios;
 import Aplicacion.Validaciones;
 
 public class Agregar_Astronomo extends JInternalFrame {
 	
-	JPanel panel, pContent, pNombre, pApellido, pRut, pEdad, pFNacimiento, pNacionalidad, pCarrera, pBtn;
-	JLabel lNombre, lApe, lRut, lEdad, lFNa, lNa, lCarr;
-	JTextField tNombre, tApe, tRut, tEdad, tFNa, tNa, tCarr;
+	JPanel panel, pContent, pNombre, pApellido, pRut, pEdad, pFNacimiento, pNacionalidad, pCarrera, pPass, pBtn;
+	JLabel lNombre, lApe, lRut, lEdad, lFNa, lNa, lCarr, lPass;
+	JTextField tNombre, tApe, tRut, tEdad, tFNa, tNa, tCarr, tPass;
 	JButton btnGuardar, btnLimpiar;
 	
 	Validaciones val;
@@ -42,6 +44,7 @@ public class Agregar_Astronomo extends JInternalFrame {
 		pFNacimiento = new JPanel();
 		pNacionalidad = new JPanel();
 		pCarrera = new JPanel();
+		pPass = new JPanel();
 		pBtn = new JPanel();
 		
 		/** Campo RUT **/
@@ -108,6 +111,15 @@ public class Agregar_Astronomo extends JInternalFrame {
 		pCarrera.add(lCarr);
 		pCarrera.add(tCarr);
 		
+		/** Campo Password **/
+		lPass = new JLabel("Contraseña:");
+		lPass.setPreferredSize(new Dimension(130, 20));
+		
+		tPass = new JTextField(20);
+		
+		pPass.add(lPass);
+		pPass.add(tPass);
+		
 		/** Botones **/
 		ImageIcon iSave = new ImageIcon("imagenes/icon_save.png");
 		btnGuardar = new Plantilla_JButton(iSave, "Guardar");
@@ -143,6 +155,7 @@ public class Agregar_Astronomo extends JInternalFrame {
 		pContent.add(pFNacimiento);
 		pContent.add(pNacionalidad);
 		pContent.add(pCarrera);
+		pContent.add(pPass);
 		pContent.add(pBtn);
 		
 		/** Panel Principal **/
@@ -204,8 +217,27 @@ public class Agregar_Astronomo extends JInternalFrame {
 		} else if(!val.soloString(tCarr.getText())) {
 			JOptionPane.showInternalMessageDialog(p.DP, "El campo Lugar de Estudios solo debe contener letras.");
 			tCarr.requestFocus();
+		// Campo Password
+		} else if(!val.campoVacio(tPass.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Contraseña no puede estar vacio.");
 		} else {
-			JOptionPane.showInternalMessageDialog(p.DP, "Se ha registrado con exito.");
+			Controladora ctrl = new Controladora();
+			boolean res = ctrl.crearAstronomo(new Usuarios(
+					tRut.getText(),
+					tNombre.getText(),
+					tApe.getText(),
+					tFNa.getText(),
+					Integer.parseInt(tEdad.getText().toString()),
+					tNa.getText(),
+					tCarr.getText(),
+					tPass.getText()
+					));
+			
+			if (res) {
+				JOptionPane.showInternalMessageDialog(p.DP, "Se ha creado el astronomo con éxito.");
+			} else {
+				JOptionPane.showInternalMessageDialog(p.DP, "Un error ha ocurrido mientras se crea el usuario, vuelve a intentarlo.");
+			}
 			
 		}
 	}

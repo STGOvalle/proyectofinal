@@ -22,6 +22,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import Aplicacion.Controladora;
 import Aplicacion.Usuarios;
 import Aplicacion.Validaciones;
 import Persistencia.SqlUsuarios;
@@ -37,13 +38,11 @@ public class Modificar_Astronomo extends JInternalFrame{
 	JTextField tNombre, tApe, tRut, tEdad, tFNa, tNa, tCarr;
 	JButton btnGuardar, btnLimpiar;
 	
-	
-	
 	DefaultTableModel dtm;
 	JTable table;
 	String [] cabecera;
 	
-	
+	Validaciones val;
 	
 	public Modificar_Astronomo() {
 		super("Modificar Astronomo", false, true, false);
@@ -94,10 +93,6 @@ public class Modificar_Astronomo extends JInternalFrame{
 				Cargar_Label(rut);
 			}
 		});
-		boolean b = table.isEditing();				
-		if (b == true) {
-			JOptionPane.showMessageDialog(null, "No puedes hacer esto");
-		}
 		pIzquierda.add(scrollPane);
 		
 		
@@ -215,8 +210,8 @@ public class Modificar_Astronomo extends JInternalFrame{
 	}
 	
 	private void llenar_datos() {
-		Sqltabla datos = new Sqltabla();
-		ArrayList data = datos.Astronomos();
+		Controladora ctrl = new Controladora();
+		ArrayList data = ctrl.getAstronomos();
 		
 		Object[] filas = new Object[cabecera.length];
 		Usuarios obj_temp;
@@ -231,8 +226,8 @@ public class Modificar_Astronomo extends JInternalFrame{
 	}
 	
 	private void Cargar_Label(String rut) {
-		Sqltabla datos = new Sqltabla();
-		Object[] data = datos.getAstronomo(rut);
+		Controladora ctrl = new Controladora();
+		Object[] data = ctrl.getStronomo(rut);
 		
 		tRut.setText(data[0].toString());
 		tNombre.setText(data[1].toString());
@@ -253,9 +248,49 @@ public class Modificar_Astronomo extends JInternalFrame{
 	
 	private void guardar() {
 		Principal p = (Principal)getDesktopPane().getTopLevelAncestor();
-			
-			
-			SqlUsuarios sql = new SqlUsuarios();
+		val = new Validaciones();
+		// Campo Rut
+		if(!val.campoVacio(tRut.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Rut no puede estar vacio.");
+			tRut.requestFocus();
+		} else if(!val.Rut(tRut.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El RUT es inválido.");
+		// Campo Nombre
+		} else if(!val.campoVacio(tNombre.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Nombre no puede estar vacio.");
+			tNombre.requestFocus();
+		} else if(!val.soloString(tNombre.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Nombre solo debe contener letras.");
+			tNombre.requestFocus();
+		// Campo apellido
+		} else if(!val.campoVacio(tApe.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Apellidos no puede estar vacio.");
+			tApe.requestFocus();
+		} else if(!val.soloString(tApe.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Apellidos solo debe contener letras.");
+			tApe.requestFocus();
+		// Campo Edad
+		} else if(!val.campoVacio(tEdad.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Edad no puede estar vacio.");
+			tEdad.requestFocus();
+		} else if(!val.soloNum(tEdad.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Edad solo debe contener Numeros");
+			tEdad.requestFocus();
+		} else if(!val.campoVacio(tNa.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Nacionalidad no puede estar vacio.");
+			tNa.requestFocus();
+		} else if(!val.soloString(tNa.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Nacionalidad solo debe contener letras.");
+			tNa.requestFocus();
+		// Campo lugar de estudios
+		} else if(!val.campoVacio(tCarr.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Lugar de Estudios no puede estar vacio.");
+			tCarr.requestFocus();
+		} else if(!val.soloString(tCarr.getText())) {
+			JOptionPane.showInternalMessageDialog(p.DP, "El campo Lugar de Estudios solo debe contener letras.");
+			tCarr.requestFocus();
+		} else {
+			Controladora ctrl = new Controladora();
 			Usuarios usr = new Usuarios();
 			
 			usr.setRut(tRut.getText());
@@ -266,11 +301,12 @@ public class Modificar_Astronomo extends JInternalFrame{
 			usr.setNacionalidad(tNa.getText());
 			usr.setEstudio_carrera(tCarr.getText());
 			
-			boolean cons = sql.modUsuario(usr);
+			boolean res = ctrl.modAstronomo(usr);
 		
-			if(!cons) {
+			if(!res) {
 				JOptionPane.showInternalMessageDialog(p.DP, "Se ha modificado el usuario con éxito.");
 			}
+		}
 	}
 	
 	public void poner_icono() {

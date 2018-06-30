@@ -17,9 +17,6 @@ public class conexion {
 		try {
 			Class.forName(driver);
 			con = DriverManager .getConnection(url, user, password);
-			if (con != null) {
-				System.out.println("Conexión establecida...");
-			}
 		} catch (Exception e) {
 			System.out.println("Error al conectarse a la base de datos"+e.toString());
 		}

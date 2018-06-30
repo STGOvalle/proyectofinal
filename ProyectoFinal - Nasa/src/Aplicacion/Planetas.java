@@ -4,7 +4,7 @@ public class Planetas {
 
 	private String Nombre,Elem_org,Rotacion;
 	private double Gravedad,Vel_Esc;
-	private int Diametro_p,Temperatura,Dist_Sol,cant_satelites=0;
+	private int Diametro_p,Temperatura,Dist_Sol,cant_satelites=0, id;
 	
 	public Planetas(int DP,String N,String EO,int T,double G,double VE,int DS,String R, int CS) {
 		
@@ -17,6 +17,36 @@ public class Planetas {
 		this.Dist_Sol= DS;
 		this.Rotacion=R;
 		this.cant_satelites=CS;
+	}
+
+	public Planetas(int I, String N, int D, String EO, int T, double G, double VE, int DS, String R, int CS) {
+		this.id = I;
+		this.Nombre = N;
+		this.Diametro_p = D;
+		this.Elem_org = EO;
+		this.Temperatura= T;
+		this.Gravedad= G;
+		this.Vel_Esc= VE;
+		this.Dist_Sol= DS;
+		this.Rotacion=R;
+		this.cant_satelites=CS;
+	}
+
+	public Planetas() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Planetas(int i, String N) {
+		this.id = i;
+		this.Nombre = N;
+	}
+	
+	public int getId() {
+		return this.id;
+	}
+	
+	public void setId(int i) {
+		this.id = i;
 	}
 
 	public String getNombre() {
@@ -91,6 +121,10 @@ public class Planetas {
 		this.cant_satelites = cant_satelites;
 	}
 	
+	@Override
+	public String toString() {
+		return Nombre;
+	}
 	
 	
 }
