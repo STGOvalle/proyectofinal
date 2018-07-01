@@ -225,6 +225,13 @@ public class Modificar_Astronomo extends JInternalFrame{
 		}
 	}
 	
+	private void Limpiar_Tabla() {
+		for (int i = 0; i<table.getRowCount(); i++) {
+			dtm.removeRow(i);
+			i-=1;
+		}
+	}
+	
 	private void Cargar_Label(String rut) {
 		Controladora ctrl = new Controladora();
 		Object[] data = ctrl.getStronomo(rut);
@@ -305,6 +312,8 @@ public class Modificar_Astronomo extends JInternalFrame{
 		
 			if(!res) {
 				JOptionPane.showInternalMessageDialog(p.DP, "Se ha modificado el usuario con éxito.");
+				this.Limpiar_Tabla();
+				this.llenar_datos();
 			}
 		}
 	}

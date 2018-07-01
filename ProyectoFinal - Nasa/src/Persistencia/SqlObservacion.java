@@ -1,6 +1,8 @@
 package Persistencia;
 
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import Aplicacion.Observacion;
@@ -85,6 +87,8 @@ public class SqlObservacion extends conexion{
 			}
 		} catch (SQLException e) {
 			System.out.println(e.toString());
+		} finally {
+			this.desconectar();
 		}
 		return data;
 	}
@@ -109,5 +113,59 @@ public class SqlObservacion extends conexion{
 			this.desconectar();
 		}
 		return false;
+	}
+	
+	public ArrayList getObservacionTime(String finicio, String ffinal) {
+		ArrayList data = new ArrayList();
+			
+		try {
+			String SQL = "SELECT o.id, hora_inicio, hora_termino, observacion, p.nombre, u.nombre, u.apellido FROM observacion o "
+					+ "INNER JOIN planetas p ON o.id_planeta = p.id "
+					+ "INNER JOIN usuarios u ON o.id_usuario = u.id "
+					+ "WHERE DATE(hora_inicio) BETWEEN ? AND ? ORDER BY id DESC";
+			/** Parseo de fechas **/
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			java.util.Date FI, FF = null;
+			
+			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+			/** Fecha comienzo **/
+			FI = sdf.parse(finicio);
+			Date FIF = Date.valueOf(sdf2.format(FI));
+			/** Fecha Final **/
+			FF = sdf.parse(ffinal);
+			Date FFF = Date.valueOf(sdf2.format(FF));
+			
+			
+			PreparedStatement ps = con.prepareStatement(SQL);
+			ps.setDate(1, FIF);
+			ps.setDate(2, FFF);
+		
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Observacion obs = new Observacion(
+						rs.getInt(1),
+						rs.getDate(2).toString(), 
+						rs.getDate(3).toString(), 
+						rs.getString(4), 
+						rs.getString(5),
+						rs.getString(6),
+						rs.getString(7)
+						);
+				
+				data.add(obs);
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			this.desconectar();
+		}
+		
+		return data;
 	}
 }

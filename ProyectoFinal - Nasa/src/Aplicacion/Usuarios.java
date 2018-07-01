@@ -2,7 +2,7 @@ package Aplicacion;
 
 public class Usuarios {
 	private String Rut,Nombre,Apellido,fecha_nac,Nacionalidad,Estudio_carrera, password;
-	private int edad, tipo_user;
+	private int edad, tipo_user, id;
 	
 	public Usuarios() {
 		
@@ -21,6 +21,12 @@ public class Usuarios {
 		this.Rut = u;
 		this.password = p;
 		this.tipo_user = tU;
+	}
+	
+	public Usuarios(int i, String N, String A) {
+		this.id = i;
+		this.Nombre = N;
+		this.Apellido = A;
 	}
 	
 	public Usuarios(String R,String N,String APE,String FC,int E,String NAC,String EC, String P) {
@@ -92,5 +98,17 @@ public class Usuarios {
 	public void setTipoUser(int TU) {
 		this.tipo_user = TU;
 	}
+
+	public int getId() {
+		return this.id;
+	}
 	
+	public void setId(int i) {
+		this.id = i;
+	}
+	@Override
+	public String toString() {
+		String v = this.Nombre+" "+this.Apellido;
+		return v;
+	}
 }

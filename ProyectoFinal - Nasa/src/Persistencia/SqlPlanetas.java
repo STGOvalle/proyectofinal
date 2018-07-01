@@ -68,7 +68,7 @@ public class SqlPlanetas extends conexion{
 			this.desconectar();
 		}
 		
-		return data;
+		return null;
 	}
 	
 	public Object[] ObtenerPlaneta(int ID) {
@@ -94,6 +94,8 @@ public class SqlPlanetas extends conexion{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			this.desconectar();
 		}
 		return null;
 	}
@@ -127,5 +129,43 @@ public class SqlPlanetas extends conexion{
 			this.desconectar();
 		}
 		return false;
+	}
+	
+	public ArrayList getPlanetas() {
+		ArrayList data = new ArrayList();
+		
+		
+		try {
+			String sql = "SELECT id, nombre, diametro, elemento_organico, temperatura, gravedad, vel_esc, dist_sol, "
+					+ "rotacion, cant_sat FROM planetas";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Planetas pln = new Planetas(
+						rs.getInt(1),
+						rs.getString(2),
+						rs.getInt(3),
+						rs.getString(4),
+						rs.getInt(5),
+						rs.getDouble(6),
+						rs.getDouble(7),
+						rs.getInt(8),
+						rs.getString(9),
+						rs.getInt(10)
+						);
+				
+				data.add(pln);
+				
+			}
+			
+			return data;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			this.desconectar();
+		}
+		
+		return null;
 	}
 }

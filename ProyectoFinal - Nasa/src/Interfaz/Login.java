@@ -99,6 +99,8 @@ public class Login extends JInternalFrame {
 				
 				P.mInfo.setVisible(true);
 				P.mInicio.setVisible(true);
+				P.iInfoAst.setVisible(false);
+				P.iInfoPla.setVisible(false);
 				dispose();
 			}
 		});

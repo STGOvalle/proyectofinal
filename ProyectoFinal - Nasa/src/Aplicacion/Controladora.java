@@ -1,9 +1,13 @@
 package Aplicacion;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import Persistencia.SqlObservacion;
 import Persistencia.SqlPlanetas;
+import Persistencia.SqlTurnos;
 import Persistencia.SqlUsuarios;
 import Persistencia.Sqltabla;
 
@@ -97,6 +101,30 @@ public class Controladora {
 		SqlObservacion SQL = new SqlObservacion();
 		boolean res = SQL.modObservacion(obs);
 		return res;
+	}
+	
+	public ArrayList getObservacionFecha(String HI, String HF) {
+		SqlObservacion datos = new SqlObservacion();
+		ArrayList data = datos.getObservacionTime(HI, HF);
+		return data;
+	}
+	
+	public boolean crearTurno(Turnos tur) {
+		SqlTurnos SQL = new SqlTurnos();
+		boolean res = SQL.crearTurno(tur);
+		return res;
+	}
+	
+	public Object[] getLastTurno(int id) {
+		SqlTurnos SQL = new SqlTurnos();
+		Object[] data = SQL.getLastTurno(id);
+		return data;
+	}
+	
+	public ArrayList getPlanetasM() {
+		SqlPlanetas SQL = new SqlPlanetas();
+		ArrayList data = SQL.getPlanetas();
+		return data;
 	}
 
 }

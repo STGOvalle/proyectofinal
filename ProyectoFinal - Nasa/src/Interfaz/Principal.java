@@ -25,7 +25,8 @@ public class Principal extends JFrame{
 	public JDesktopPane DP;
 	private JMenuBar barra;
 	public JMenu mInicio, mRegistros, mAdmin, mInfo;
-	public JMenuItem iCerrar, iAgregarP, iAgregarOb, iAgregarAs, iModPlaneta, iModAs, iModOb;
+	public JMenuItem iCerrar, iAgregarP, iAgregarOb, iAgregarAs, iModPlaneta, iModAs, iModOb, iAgregarTurno, iInfoAst, iInfoPla,
+		iInfoObs;
 	
 	public Principal() {
 		addWindowListener(new WindowAdapter() {
@@ -118,6 +119,14 @@ public class Principal extends JFrame{
 			
 		});
 		
+		iAgregarTurno = new Plantilla_MenuItem(iAdd, "Agregar Turno");
+		iAgregarTurno.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				abrir_agTurno();
+			}
+		});
+		
 		ImageIcon iMod = new ImageIcon("imagenes/icon_mod.png");
 		iModAs = new Plantilla_MenuItem(iMod, "Modificar Astronomo");	
 		iModAs.addActionListener(new ActionListener() {
@@ -145,14 +154,44 @@ public class Principal extends JFrame{
 				abrir_modPlaneta();
 			}
 			
-		});
+		});		
+		
 		
 		mAdmin.add(iAgregarAs);
+		mAdmin.add(iAgregarTurno);
 		mAdmin.addSeparator();
 		mAdmin.add(iModAs);
 		mAdmin.add(iModOb);
 		mAdmin.add(iModPlaneta);
 		
+		/** Pestaña Informes **/
+		iInfoAst = new Plantilla_MenuItem(iMod, "Info Astronomos");
+		iInfoAst.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				abrir_InfoAstro();
+			}
+		});
+		
+		iInfoObs = new Plantilla_MenuItem(iMod, "Info Observaciones");
+		iInfoObs.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				abrir_InfoObs();
+			}
+		});
+		
+		iInfoPla = new Plantilla_MenuItem(iMod, "Info Planetas");
+		iInfoPla.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				abrir_InfoPla();
+			}
+		});
+		
+		mInfo.add(iInfoAst);
+		mInfo.add(iInfoObs);
+		mInfo.add(iInfoPla);
 		//Agregar menu a la barra	
 		barra.add(mInicio);
 		barra.add(mRegistros);
@@ -178,6 +217,7 @@ public class Principal extends JFrame{
 				setLocation(frame_anchura / 4, frame_altura / 4);
 	}
 	
+	
 	public static void main(String [] args) {
 		
 		try {
@@ -199,13 +239,12 @@ public class Principal extends JFrame{
 	}
 	
 	public void abrir_Login() {
-		//Login L = new Login();
 		Login L = new Login();
+		//Informe_Planetas L = new Informe_Planetas();
 		Dimension desktopSize = DP.getSize();
 		Dimension FrameSize = L.getSize();
 		L.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height - FrameSize.height)/2);
 		DP.add(L);
-		
 	}
 	
 	public void abrir_agPlaneta() {
@@ -253,6 +292,38 @@ public class Principal extends JFrame{
 	
 	public void abrir_modPlaneta() {
 		Modificar_Planetas AG = new Modificar_Planetas();
+		Dimension desktopSize = DP.getSize();
+		Dimension FrameSize = AG.getSize();
+		AG.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height - FrameSize.height)/2);
+		DP.add(AG);
+	}
+	
+	public void abrir_agTurno() {
+		Agregar_Turnos AG = new Agregar_Turnos();
+		Dimension desktopSize = DP.getSize();
+		Dimension FrameSize = AG.getSize();
+		AG.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height - FrameSize.height)/2);
+		DP.add(AG);
+	}
+	
+	public void abrir_InfoObs() {
+		Informe_Observaciones AG = new Informe_Observaciones();
+		Dimension desktopSize = DP.getSize();
+		Dimension FrameSize = AG.getSize();
+		AG.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height - FrameSize.height)/2);
+		DP.add(AG);
+	}
+	
+	public void abrir_InfoPla() {
+		Informe_Planetas AG = new Informe_Planetas();
+		Dimension desktopSize = DP.getSize();
+		Dimension FrameSize = AG.getSize();
+		AG.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height - FrameSize.height)/2);
+		DP.add(AG);
+	}
+	
+	public void abrir_InfoAstro() {
+		Informe_Astronomo AG = new Informe_Astronomo();
 		Dimension desktopSize = DP.getSize();
 		Dimension FrameSize = AG.getSize();
 		AG.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height - FrameSize.height)/2);

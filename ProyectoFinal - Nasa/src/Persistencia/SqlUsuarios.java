@@ -76,10 +76,11 @@ public class SqlUsuarios extends conexion {
 	public boolean crearAstronomo(Usuarios usr) {
 		try {
 			// Parsing Fecha
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
 			java.util.Date dateF = null;
 			dateF = sdf.parse(usr.getFecha_nac());
-			Date fecha = Date.valueOf(sdf.format(dateF));
+			Date fecha = Date.valueOf(sdf2.format(dateF));
 			
 			String sql = "INSERT INTO usuarios values (default, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -103,9 +104,12 @@ public class SqlUsuarios extends conexion {
 				return true;
 			}
 			
-		} catch (SQLException | ParseException e) {
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.toString());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			this.desconectar();
 		}

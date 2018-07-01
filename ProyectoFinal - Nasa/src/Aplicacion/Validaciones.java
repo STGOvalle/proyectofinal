@@ -54,7 +54,7 @@ public class Validaciones {
 	}
 	
 	public boolean fecha(String cad) {
-		Pattern P = Pattern.compile("(^[0-9]{2}\\-[0-9]{2}\\-[1-9]{4}$)");
+		Pattern P = Pattern.compile("(^[0-9]{2}\\/[0-9]{2}\\/[1-9]{4}$)");
 		Matcher mat = P.matcher(cad);
 		
 		boolean res = mat.matches();
@@ -62,4 +62,12 @@ public class Validaciones {
 		return res;
 	}
 	
+	public boolean fechaTurno(String cad) {
+		Pattern P = Pattern.compile("(^[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}$)");
+		Matcher mat = P.matcher(cad);
+		
+		boolean res = mat.matches();
+		
+		return res;
+	}
 }

@@ -38,6 +38,16 @@ public class Observacion {
 		this.Observacion = ob;
 	}
 
+	public Observacion(int I, String HI, String HT, String O, String P, String N, String A) {
+		this.id = I;
+		this.hora_inicio = HI;
+		this.hora_termino = HT;
+		this.Observacion = O;
+		this.planeta = P;
+		this.usuario = N;
+		this.uape = A;
+	}
+
 	public int getId() {
 		return this.id;
 	}

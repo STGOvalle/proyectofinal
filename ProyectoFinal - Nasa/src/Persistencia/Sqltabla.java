@@ -19,7 +19,7 @@ public class Sqltabla extends conexion{
 			ResultSet rs = null;
 			Connection con = this.getConnection();
 			
-			String sql = "SELECT rut, nombre, apellido FROM usuarios";
+			String sql = "SELECT rut, nombre, apellido, id, fecha_nac, edad, nacionalidad, estudio_carrera FROM usuarios";
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			
@@ -29,6 +29,11 @@ public class Sqltabla extends conexion{
 				user.setRut(rs.getString(1));
 				user.setNombre(rs.getString(2));
 				user.setApellido(rs.getString(3));
+				user.setId(rs.getInt(4));
+				user.setFecha_nac(rs.getString(5));
+				user.setEdad(rs.getInt(6));
+				user.setNacionalidad(rs.getString(7));
+				user.setEstudio_carrera(rs.getString(8));
 				
 				data.add(user);
 			}
@@ -45,11 +50,11 @@ public class Sqltabla extends conexion{
 	}
 	
 	public Object[] getAstronomo(String rut) {
-		Object[] data = new Object[7];
+		Object[] data = new Object[8];
 		try {
 			Connection con = this.getConnection();
 			
-			String sql = "SELECT rut, nombre, apellido, edad, fecha_nac, nacionalidad, estudio_carrera FROM usuarios WHERE rut = ?";
+			String sql = "SELECT rut, nombre, apellido, edad, fecha_nac, nacionalidad, estudio_carrera, id FROM usuarios WHERE rut = ?";
 			
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, rut);
@@ -66,6 +71,6 @@ public class Sqltabla extends conexion{
 		} catch (SQLException e) {
 			System.out.println(e.toString());
 		}
-		return data;
+		return null;
 	}
 }
