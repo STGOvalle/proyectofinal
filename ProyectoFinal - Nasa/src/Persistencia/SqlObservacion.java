@@ -25,8 +25,8 @@ public class SqlObservacion extends conexion{
 			ps.setString(4, obs.getHoraTermino());
 			ps.setString(5, obs.getObservacion());
 			
-			boolean res = ps.execute();
-			if(!res) {
+			int res = ps.executeUpdate();
+			if(res == 1) {
 				return true;
 			}
 		} catch (SQLException e) {
@@ -55,7 +55,7 @@ public class SqlObservacion extends conexion{
 				data.add(obs);
 				
 			}
-			
+			return data;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -63,7 +63,7 @@ public class SqlObservacion extends conexion{
 			this.desconectar();
 		}
 		
-		return data;
+		return null;
 	}
 	
 	public Object[] getObservacion(int id) {
@@ -90,7 +90,7 @@ public class SqlObservacion extends conexion{
 		} finally {
 			this.desconectar();
 		}
-		return data;
+		return null;
 	}
 	
 	public boolean modObservacion(Observacion obs) {

@@ -60,7 +60,7 @@ public class SqlPlanetas extends conexion{
 				pln.setId(rs.getInt(2));
 				
 				data.add(pln);
-				
+				return data;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

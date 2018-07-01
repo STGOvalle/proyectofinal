@@ -82,6 +82,7 @@ public class Modificar_Observacion extends JInternalFrame {
 			}
 			
 		});	
+		btn_Buscar.setEnabled(false);
 		this.llenar_combo();
 		
 		pBuscar.add(cBuscar);
@@ -196,10 +197,13 @@ public class Modificar_Observacion extends JInternalFrame {
 		Controladora ctrl = new Controladora();
 		ArrayList data = ctrl.getPlanetas();
 		
-		Planetas obj_temp;
-		for (int i=0; i<data.size(); i++) {
-			obj_temp = (Planetas)data.get(i);
-			cBuscar.addItem(new Planetas(obj_temp.getId(), obj_temp.getNombre()));
+		if(data != null) {
+			btn_Buscar.setEnabled(true);
+			Planetas obj_temp;
+			for (int i=0; i<data.size(); i++) {
+				obj_temp = (Planetas)data.get(i);
+				cBuscar.addItem(new Planetas(obj_temp.getId(), obj_temp.getNombre()));
+			}
 		}
 	}
 	
@@ -208,14 +212,16 @@ public class Modificar_Observacion extends JInternalFrame {
 		Controladora ctrl = new Controladora();
 		ArrayList data = ctrl.getObservaciones(ID);
 		
-		Object[] filas = new Object[cabecera.length];
-		Observacion obj_temp;
-		for (int i=0; i<data.size(); i++) {
-			obj_temp = (Observacion)data.get(i);
-			filas[0] = obj_temp.getId();
-			filas[1] = obj_temp.getUsuario()+" "+obj_temp.getApeAstronomo();
-			
-			dtm.addRow(filas);
+		if(data != null) {
+			Object[] filas = new Object[cabecera.length];
+			Observacion obj_temp;
+			for (int i=0; i<data.size(); i++) {
+				obj_temp = (Observacion)data.get(i);
+				filas[0] = obj_temp.getId();
+				filas[1] = obj_temp.getUsuario()+" "+obj_temp.getApeAstronomo();
+				
+				dtm.addRow(filas);
+			}
 		}
 	}
 	

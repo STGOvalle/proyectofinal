@@ -240,7 +240,6 @@ public class Principal extends JFrame{
 	
 	public void abrir_Login() {
 		Login L = new Login();
-		//Informe_Planetas L = new Informe_Planetas();
 		Dimension desktopSize = DP.getSize();
 		Dimension FrameSize = L.getSize();
 		L.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height - FrameSize.height)/2);
